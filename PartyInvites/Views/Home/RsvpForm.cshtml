@@ -9,10 +9,45 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css"/>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <title>RsvpForm</title>
 </head>
 <body>
-    <div> 
+    <div class=" panel panel-success">
+        <div class="panel-heading text-center"><h4>RSVP</h4></div>
+        <div class="panel-body">
+            @using(Html.BeginForm())
+            {
+                @Html.ValidationSummary()
+                <div class="form-group">
+                    <label>Your Name:</label>
+                    @Html.TextAreaFor(x => x.Name, new{ @class = "form-control"})
+                </div>
+                <div class="form-group">
+                    <label>Your Email:</label>
+                    @Html.TextAreaFor(x => x.Email, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Your Phone:</label>
+                    @Html.TextAreaFor(x => x.Phone, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Will You Attend?</label>
+                    @Html.DropDownListFor(x => x.WillAttend, new[]{
+                        new SelectListItem() {Text = "Yes, I will Attend",
+                            Value = bool.TrueString},
+                        new SelectListItem() {Text = "No, I will not Attend",
+                            Value = bool.FalseString}
+                    }, "Choose an option", new { @class = "form-control" })
+                </div>
+                <div class="text-center">
+                    <input type="submit" class="btn btn-success" value="Submit RSVP" />
+                </div>
+        
+        }
+    </div>
     </div>
 </body>
 </html>
